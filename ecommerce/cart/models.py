@@ -6,6 +6,8 @@ from django.core import serializers
 import json
 from jsonfield import JSONField
 from product.models import Product
+from django.contrib.sessions.backends.db import SessionStore
+
 class CartItem():
     
     def __init__(self, product_id, quantity):
@@ -46,8 +48,9 @@ class Cart(models.Model):
      return self
  
  
-    def get_cart_products_info(self):
-            cart_items = self.cart_items
+    def get_cart_products_info(self, cart_items = None ):
+            if cart_items is None:
+                cart_items = self.cart_items
             index = 0
             for item in cart_items:
                 _item = json.loads(item)

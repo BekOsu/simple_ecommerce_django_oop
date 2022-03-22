@@ -24,7 +24,6 @@ SECRET_KEY = 'django-insecure-px!r^91w7q85qp@=vkj*2=dweo)1swf0foqn7me3yt@43=xr#j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -37,9 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    
-    
     
     'cart',
     'product',
@@ -127,3 +123,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
