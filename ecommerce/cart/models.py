@@ -27,7 +27,16 @@ class Cart(models.Model):
     cart_items = JSONField(null=True, blank=True)
     
     def add_cart_item(self, product_id, quantity): 
-
+        index = 0
+        for item in self.cart_items:
+          item = json.loads(item)
+          if item['product_id']  == int(product_id):
+              quantity = int(item['quantity'] )
+              item['quantity'] = quantity + 1
+              self.cart_items[index] = json.dumps(item)
+              return 
+          index += 1
+          
         new_item =  {'product_id':product_id,
                      'quantity': quantity}
         
@@ -39,7 +48,16 @@ class Cart(models.Model):
         for item in self.cart_items:
           item = json.loads(item)
           if item['product_id']  == int(product_id):
-              self.cart_items.pop(index)
+              quantity = int(item['quantity'] )
+              quantity -= 1
+              
+              item['quantity'] = quantity
+              if quantity < 1:
+                self.cart_items.pop(index)
+              else: 
+                 self.cart_items[index] = json.dumps(item)
+              
+              return 
           index += 1
     
       
@@ -68,6 +86,4 @@ class Cart(models.Model):
         
         
  # todo
- # add users seasions 
- # increes/ decares product quantity 
  # add photots
