@@ -19,19 +19,18 @@ def index(request):
 
 def remove(request):
     cart = Cart.objects.get(pk=1)
-    cart.remove_cart_item(1)
+    product_id = request.GET["product_id"]
+    # product_id = 2
+    cart.remove_cart_item(product_id)
     cart.save()
-    cart_items = cart.cart_items
-    reponse = f"cart items: {cart_items}"
-    return HttpResponse(reponse)
+    return redirect('/cart/list')
 
 def add(request):
     cart = Cart.objects.get(pk=1)
-    cart.add_cart_item(2,2)
+    product_id = request.GET["product_id"]
+    cart.add_cart_item(int(product_id),1)
     cart.save()
-    cart_items = cart.cart_items
-    reponse = f"cart items: {cart_items}"
-    return HttpResponse(reponse)
+    return redirect('/cart/list')
 
 def empty(request):
     cart = Cart.objects.get(pk=1)

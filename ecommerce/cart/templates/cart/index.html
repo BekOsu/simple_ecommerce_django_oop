@@ -7,7 +7,8 @@
         <h1>{{item.name}}</h1>
         <p class="price">${{item.price}}</p>
         <p>{{item.description}}</p>
-        <p><button>remove from Cart</button></p>
+        <p>quanttiy: {{item.quantity}}</p>
+        <p> <a href="/cart/remove?product_id={{item.id}}">remove from Cart</a></p>
       </div>
     {% endfor %}
     </ul>
@@ -15,4 +16,6 @@
     <p> Cart is ampty.</p>
 {% endif %}
 
+
+<a href="/">Home</a> |
 <a href="/cart/empty"> empty cart</a>

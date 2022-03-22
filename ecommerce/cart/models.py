@@ -36,7 +36,7 @@ class Cart(models.Model):
         index = 0
         for item in self.cart_items:
           item = json.loads(item)
-          if item['product_id']  == product_id:
+          if item['product_id']  == int(product_id):
               self.cart_items.pop(index)
           index += 1
     
@@ -52,7 +52,8 @@ class Cart(models.Model):
             for item in cart_items:
                 _item = json.loads(item)
                 product = Product.objects.get(pk = _item['product_id'])
-                product_info = dict(name=product.name,
+                product_info = dict(id=product.id,
+                                    name=product.name,
                                     price=product.price,
                                     description=product.description,
                                     photo=product.photos,
@@ -66,5 +67,4 @@ class Cart(models.Model):
  # todo
  # add users seasions 
  # increes/ decares product quantity 
- # add views
  # add photots

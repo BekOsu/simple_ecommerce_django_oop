@@ -1,0 +1,18 @@
+{% if  products %}
+    <ul>
+
+    {% for product in products %}
+    <div class="card">
+        {% comment %} <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%"> {% endcomment %}
+        <h1>{{product.name}}</h1>
+        <p class="price">${{product.price}}</p>
+        <p>{{product.description}}</p>
+        <p> <a href="/cart/add?product_id={{product.id}}">Add to Cart</a></p>
+      </div>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p> No product.</p>
+{% endif %}
+
+<a href="/cart/list"> open cart</a>
