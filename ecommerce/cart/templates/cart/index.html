@@ -1,0 +1,18 @@
+{% if  cart_items %}
+    <ul>
+
+    {% for item in cart_items %}
+    <div class="card">
+        {% comment %} <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%"> {% endcomment %}
+        <h1>{{item.name}}</h1>
+        <p class="price">${{item.price}}</p>
+        <p>{{item.description}}</p>
+        <p><button>remove from Cart</button></p>
+      </div>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p> Cart is ampty.</p>
+{% endif %}
+
+<a href="/cart/empty"> empty cart</a>

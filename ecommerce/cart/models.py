@@ -5,7 +5,7 @@ import json
 from django.core import serializers
 import json
 from jsonfield import JSONField
-
+from product.models import Product
 class CartItem():
     
     def __init__(self, product_id, quantity):
@@ -24,13 +24,6 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(default=datetime.now)
     cart_items = JSONField(null=True, blank=True)
     
-    
-    # def set_cart_item(self, data):
-    #       cart_items =   json.dumps(data)
-        
-    # def get_cart_item(self):
-    #         return json.loads(self.cart_items)
-        
     def add_cart_item(self, product_id, quantity): 
 
         new_item =  {'product_id':product_id,
@@ -53,6 +46,23 @@ class Cart(models.Model):
      return self
  
  
+    def get_cart_products_info(self):
+            cart_items = self.cart_items
+            index = 0
+            for item in cart_items:
+                _item = json.loads(item)
+                product = Product.objects.get(pk = _item['product_id'])
+                product_info = dict(name=product.name,
+                                    price=product.price,
+                                    description=product.description,
+                                    photo=product.photos,
+                                    code=product.code,
+                                    quantity=_item['quantity'])
+                cart_items[index] = product_info
+                index += 1
+            return cart_items
+        
+        
  # todo
  # add users seasions 
  # increes/ decares product quantity 
