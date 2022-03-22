@@ -1,10 +1,11 @@
+<h1> My Cart </h1> 
 {% if  cart_items %}
     <ul>
 
     {% for item in cart_items %}
     <div class="card">
         {% comment %} <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%"> {% endcomment %}
-        <h1>{{item.name}}</h1>
+        <h2>{{item.name}}</h2>
         <p class="price">${{item.price}}</p>
         <p>{{item.description}}</p>
 
